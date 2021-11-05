@@ -1,0 +1,5 @@
+tests/
+img/
+
+*.bat
+*.exe
