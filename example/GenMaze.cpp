@@ -1,7 +1,7 @@
-#include "../src/IMazeGenerator.h"
+#include "../src/MazeImage++.h"
 
 int main(){
-    MazeIMG::IMazeGenerator gen_maze(M_SIZE::s);
+    mazeimg_library::MazeImgGenerator gen_maze(M_SIZE::s);
     gen_maze.processImage("small_maze", IMG_FORMAT::PNG);
 
     gen_maze.setMazeSize(M_SIZE::m);
