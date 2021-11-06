@@ -1,12 +1,13 @@
 # Build static library
 
 target = $(LIB)
-objs := Board.o IMazeGenerator.o Node.o
+objs := Board.o MazeImgGenerator.o Node.o
 
 CC := g++
-CFLAGS := -std=c++17 -Wall
+CIMGLIB := -march=native -Dcimg_jpeg=1 -Dcimg_display=0
+CFLAGS := -std=c++17 -Wall $(CIMGLIB)
 
-SRCPATH := src
+SRCPATH := src/MazeImage++
 LDIR := lib
 LIB := libimg_maze.a
 
@@ -18,7 +19,7 @@ $(LIB): $(objs)
 Board.o: $(SRCPATH)/Board.cpp
 	$(CC) $(CFLAGS) -c $<
 
-IMazeGenerator.o: $(SRCPATH)/IMazeGenerator.cpp
+MazeImgGenerator.o: $(SRCPATH)/MazeImgGenerator.cpp
 	$(CC) $(CFLAGS) -c $<
 
 Node.o: $(SRCPATH)/Node.cpp
