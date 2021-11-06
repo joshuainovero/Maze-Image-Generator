@@ -98,7 +98,7 @@ namespace mazeimg_library{
                 node->reset();
         }
 
-        printf("Generating maze...\n");
+        _COLOREDTEXT("Generating maze...\n", _YELLOW);
         const char *sizeChar;
         switch (m_size){
             case M_SIZE::l: sizeChar = "Large"; break;

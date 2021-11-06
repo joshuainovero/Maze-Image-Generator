@@ -90,7 +90,7 @@ namespace mazeimg_library{
         cimg_library::CImg<unsigned char> im(outputPPM.c_str());
         im.save(outputCompressed.c_str());
         printf("Successfully compressed the file.\n\n");
-        printf("Finished without errors.\n\n\n");
+        _COLOREDTEXT("Finished without errors.\n\n\n", _GREEN);
         remove(outputPPM.c_str());
     }
 

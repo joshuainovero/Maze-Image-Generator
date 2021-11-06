@@ -20,6 +20,7 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 #include "Node.h"
+#include "CLIOutput.h"
 #include <time.h>
 #include <stdlib.h>
 #include <algorithm>
