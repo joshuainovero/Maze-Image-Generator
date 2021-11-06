@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-namespace MazeIMG{
+namespace mazeimg_library{
 
     class Node {
     public:

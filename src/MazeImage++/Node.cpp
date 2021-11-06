@@ -1,6 +1,6 @@
 #include "Node.h"
 
-namespace MazeIMG{
+namespace mazeimg_library{
 
     Node::Node(uint32_t row, uint32_t col, uint32_t totalRows){
         this->row = row;

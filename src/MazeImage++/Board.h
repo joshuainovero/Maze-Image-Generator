@@ -11,7 +11,7 @@
 // l (large size)  - 275 rows in the grid/board and 4 pixels for each block 
 enum M_SIZE {s = 44, m = 20, l = 4};
 
-namespace MazeIMG{
+namespace mazeimg_library{
 
     class Board {
     public:

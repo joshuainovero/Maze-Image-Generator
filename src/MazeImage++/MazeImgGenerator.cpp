@@ -1,8 +1,8 @@
-#include "IMazeGenerator.h"
+#include "MazeImgGenerator.h"
 
-namespace MazeIMG{
+namespace mazeimg_library{
     
-    IMazeGenerator::IMazeGenerator(M_SIZE m_size) : board(m_size){
+    MazeImgGenerator::MazeImgGenerator(M_SIZE m_size) : board(m_size){
         for (size_t i = 0; i < Board::img_SIZE; ++i){
             for (size_t k = 0; k < Board::img_SIZE; ++k){
                 imageVec[i].push_back(1); 
@@ -10,12 +10,12 @@ namespace MazeIMG{
         } 
     }
 
-    void IMazeGenerator::setMazeSize(M_SIZE m_size){
+    void MazeImgGenerator::setMazeSize(M_SIZE m_size){
         board.deallocateBoard();
         board.constructBoard(m_size);
     }
 
-    void IMazeGenerator::processImage(const char* output, IMG_FORMAT img_f){
+    void MazeImgGenerator::processImage(const char* output, IMG_FORMAT img_f){
         assert_((std::ifstream(output + std::string(".png"))).fail(), 
             "Name of file is already existing in the directory!");
         assert_((std::ifstream(output + std::string(".jpg"))).fail(), 

@@ -1,6 +1,6 @@
 #include "Board.h"
 
-namespace MazeIMG{
+namespace mazeimg_library{
 
     Board::Board(M_SIZE m_size){
         constructBoard(m_size);

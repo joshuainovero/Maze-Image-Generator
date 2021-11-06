@@ -1,7 +1,7 @@
-#ifndef IMAZE_GENERATOR_H_
-#define IMAZE_GENERATOR_H_
+#ifndef MAZEIMG_GENERATOR_H_
+#define MAZEIMG_GENERATOR_H_
 #include "Board.h"
-#include "../Cimg/CImg.h"
+#include "../../Cimg/CImg.h"
 #include <iostream>
 #include <fstream>
 
@@ -16,13 +16,13 @@
 
 enum class IMG_FORMAT {JPG, PNG}; // Supported formats for output image
 
-namespace MazeIMG {
+namespace mazeimg_library {
 
-    class IMazeGenerator {
+    class MazeImgGenerator {
     public:
 
         // Constructor with immediate maze size specification
-        IMazeGenerator(M_SIZE m_size);
+        MazeImgGenerator(M_SIZE m_size);
 
         // Changes the initial size of the maze that was set by the constructor
         void setMazeSize(M_SIZE m_size);
@@ -39,11 +39,11 @@ namespace MazeIMG {
 
 
         // Copy constructor and assignment is disabled
-        IMazeGenerator(const IMazeGenerator&);
-        IMazeGenerator& operator=(const IMazeGenerator&);
+        MazeImgGenerator(const MazeImgGenerator&);
+        MazeImgGenerator& operator=(const MazeImgGenerator&);
 
     };
     
 }
 
-#endif
+#endif // MAZEIMG_GENERATOR_H_
