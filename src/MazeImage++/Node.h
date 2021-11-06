@@ -1,3 +1,22 @@
+/*****************************************************************************
+ * 
+ * MazeImage++ - A library that generates maze images
+ * Copyright (C) - 2021 Joshua Inovero (joshinovero@gmail.com)
+ * 
+ * File: Node.h
+ * This file is used to initialize objects of nodes in the maze
+ * 
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the LICENSE file.
+ * 
+ * The origin of this software must not be misrepresented;
+ * you must not claim that you wrote the original software.
+ * If you use this software in a product, an acknowledgment
+ * in the product documentation would be appreciated but is not required.
+ * 
+ *****************************************************************************/
+
 #ifndef NODE_H_
 #define NODE_H_
 #include <vector>
