@@ -1,5 +1,6 @@
 tests/
 img/
 
+src/main.cpp
 *.bat
 *.exe
