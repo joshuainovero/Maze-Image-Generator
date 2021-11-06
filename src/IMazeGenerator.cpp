@@ -60,7 +60,10 @@ namespace MazeIMG{
 
         printf("Image successfully processed to PPM format.\n\n");
         printf("Compressing PPM file to %s...\n", outputCompressed.c_str());
-        system(("magick convert " + outputPPM + " " + outputCompressed).c_str());
+
+        cimg_library::CImg<unsigned char> im(outputPPM.c_str());
+        im.save(outputCompressed.c_str());
+        // system(("magick convert " + outputPPM + " " + outputCompressed).c_str());
         printf("Successfully compressed the file.\n\n");
         printf("Finished without errors.\n\n\n");
         remove(outputPPM.c_str());

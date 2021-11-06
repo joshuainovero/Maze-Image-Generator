@@ -1,6 +1,7 @@
 #ifndef IMAZE_GENERATOR_H_
 #define IMAZE_GENERATOR_H_
 #include "Board.h"
+#include "../Cimg/CImg.h"
 #include <iostream>
 #include <fstream>
 
