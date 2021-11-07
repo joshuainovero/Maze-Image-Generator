@@ -24,15 +24,6 @@
 #include <iostream>
 #include <fstream>
 
-// Custom assertion messages
-#define assert_(condition, message)\
-   (!(condition)) ?\
-      (std::cerr << "Assertion failed: (" << #condition << "), "\
-      << "function " << __FUNCTION__\
-      << ", file " << __FILE__\
-      << ", line " << __LINE__ << "."\
-      << std::endl << message << std::endl, abort(), 0) : 1
-
 enum class IMG_FORMAT {JPG, PNG}; // Supported formats for output image
 
 namespace mazeimg_library {

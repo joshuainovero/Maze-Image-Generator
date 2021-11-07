@@ -18,6 +18,8 @@
  *****************************************************************************/
 
 #ifndef CLIOUTPUT_H_
+
+// Windows system
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     #include <Windows.h>
     #define _RED     0x0C
@@ -30,6 +32,7 @@
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _DEFAULT); \
     } while(false)
 
+// Unix systems
 #elif __APPLE__ || __linux__
     #define _RED     31
     #define _GREEN   32
@@ -42,5 +45,15 @@
 #else
 # error "Error"
 #endif
+
+// Custom assertion messages
+#define assert_(condition, message)\
+   (!(condition)) ?\
+      (std::cerr << "Assertion failed: (" << #condition << "), "\
+      << "function " << __FUNCTION__\
+      << ", file " << __FILE__\
+      << ", line " << __LINE__ << "."\
+      << std::endl << message << std::endl, abort(), 0) : 1
+
 #define CLIOUTPUT_H_
 #endif // CLIOUTPUT_H_
