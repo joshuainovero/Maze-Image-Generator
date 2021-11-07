@@ -14,11 +14,20 @@ g++ -std=c++17 GenMaze.cpp -L../lib -limg_maze
 ```
 
 ## Generated Maze Image Samples ##
+# Mazes without solution #
 Large maze
-![large_maze](https://user-images.githubusercontent.com/78135477/140598434-ccc79ae4-7ae2-4ed7-960f-463ffaf5232d.png)
+![large_maze](https://user-images.githubusercontent.com/78135477/140655627-f7d3e1de-aca5-4fd6-9789-aee5d357d915.png)
 <br><br>
 Medium maze
-![medium_maze](https://user-images.githubusercontent.com/78135477/140598446-f70316ea-e712-40c1-89ba-a8627af81369.png)
+![medium_maze](https://user-images.githubusercontent.com/78135477/140655634-c13e53e5-8608-4347-ba8c-dbe8b44749d4.png)
 <br><br>
 Small maze
-![small_maze](https://user-images.githubusercontent.com/78135477/140598449-919f1be6-8f17-410d-918a-3b22ea0d9456.png)
+![small_maze](https://user-images.githubusercontent.com/78135477/140655648-ada21a7d-ba15-47a8-82dc-23060a49fb98.png)
+
+# Mazes with solution #
+Large maze with solution
+![large_maze_solution](https://user-images.githubusercontent.com/78135477/140655652-2d18ce0f-797b-4456-8aa0-3d0de5ddf0e9.png)
+Medium maze with solution
+![medium_maze_solution](https://user-images.githubusercontent.com/78135477/140655660-2694a69b-dcc1-483d-8663-0b27fee01757.png)
+Small maze with solution
+![small_maze_solution](https://user-images.githubusercontent.com/78135477/140655668-7e610ed4-5f51-44ac-b97a-d3e153f49232.png)
