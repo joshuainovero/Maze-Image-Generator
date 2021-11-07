@@ -10,7 +10,7 @@ MazeImage++ is a library for C++ that allows you to generate maze images.
 - After the build is complete, go to the 'example' directory to test the library.
 - Compile GenMaze.cpp:
 ```sh
-g++ -std=c++17 GenMaze.cpp -L../lib -limg_maze
+g++ -std=c++17 -I../include GenMaze.cpp -L../lib -limg_maze
 ```
 
 ## Generated Maze Image Samples ##
