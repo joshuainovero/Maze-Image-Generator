@@ -40,21 +40,24 @@ namespace mazeimg_library{
     }
 
     void ImageProcessor::processImage(const char* output, IMG_FORMAT img_f){
-        
+
         // Check if output file exists in the current directory
         assert_((std::ifstream(output + std::string(".png"))).fail(), 
             "Name of file is already existing in the directory!");
         assert_((std::ifstream(output + std::string(".jpg"))).fail(), 
             "Name of file is already existing in the directory!");
 
-        // Generate maze by calling the maze algorithm and return the modified graph to tiles_        
+        // Generate maze by calling the maze algorithm and return the modified graph to tiles_  
+        std::string mazeSizeMsg = "Generating " + std::string(
+            ((board->g_m_size() == s) ? "small" : 
+            (board->g_m_size() == m) ? "medium" : 
+            (board->g_m_size() == l) ? "large" : "Unknown")) + " maze...\n";
+        _COLOREDTEXT(mazeSizeMsg.c_str(), _YELLOW);      
         std::vector<Node*> *tiles_ = board->mazeAlgo->run();
-        if (solution)
-            tiles_ = board->currentAlgorithm->run();
+        printf("Maze generated successfully.\n");
     
         // Adjust pixel positions of the actual 1100x1100 image based on the generated maze
-        printf("Processing image...\n");
-        printf("Image size: %u x %u\n", Board::img_SIZE, Board::img_SIZE);
+        printf("Processing maze image...\n");
         int xcounter = 0, ycounter = 0;
         for (size_t col = 0; col < board->g_totalRows(); ++col){
             for (size_t row = 0; row < board->g_totalRows(); ++row){
@@ -70,12 +73,46 @@ namespace mazeimg_library{
             ycounter += board->g_m_size();
 
         }
+        xcounter = 0;
+        ycounter = 0;
 
+        printf("Sucessfully processed the maze image...\n");
         createImage(output, img_f);
+
+        // If solution is enabled
+        if (solution){
+            printf("Solution is enabled - Generating maze with solution...\n");
+            // Check if output solution file exists in the current directory
+            assert_((std::ifstream(output + std::string("_solution.png"))).fail(), 
+                "Name of file is already existing in the directory!");
+            assert_((std::ifstream(output + std::string("_solution.jpg"))).fail(), 
+                "Name of file is already existing in the directory!");
+
+            // Call search algorithm
+            tiles_ = board->currentAlgorithm->run();
+            printf("Maze with solution sucessfully generated.\n");
+            for (size_t col = 0; col < board->g_totalRows(); ++col){
+                for (size_t row = 0; row < board->g_totalRows(); ++row){
+                    NODETYPES currentNodeType = tiles_[col][row]->g_nodeType();
+                    for (size_t row_msize = 0; row_msize < board->g_m_size(); ++row_msize){
+                        for (size_t col_msize = 0; col_msize < board->g_m_size(); ++col_msize){
+                            imagePixels[ycounter + col_msize][xcounter] = currentNodeType;
+                        }
+                        xcounter++;
+                    }
+                }
+                xcounter = 0;
+                ycounter += board->g_m_size();
+            }
+            printf("Successfully processed maze with solution image.\n");
+            createImage((std::string(output) + "_solution").c_str(), img_f);
+        }
+        _COLOREDTEXT("\nFinished without errors.\n\n\n", _GREEN);
     }
 
     void ImageProcessor::createImage(const char* output, IMG_FORMAT img_f){
-
+        
+        printf("Creating image...\n");
         // Process image to PPM format
         std::string outputPPM = output + std::string(".ppm");
         std::string outputCompressed =  output + std::string((img_f == IMG_FORMAT::PNG) ? ".png" : ".jpg");
@@ -96,14 +133,13 @@ namespace mazeimg_library{
             }
 
         image.close();
-        printf("Image successfully processed to PPM format.\n\n");
+        printf("Image successfully processed to PPM format.\n");
         printf("Compressing PPM file to %s...\n", outputCompressed.c_str());
 
         // Convert PPM format to JPG/PNG
         cimg_.load(outputPPM.c_str());
         cimg_.save(outputCompressed.c_str());
-        printf("Successfully compressed the file.\n\n");
-        _COLOREDTEXT("Finished without errors.\n\n\n", _GREEN);
+        printf("Successfully compressed the file.\n");
         remove(outputPPM.c_str()); 
     }
 

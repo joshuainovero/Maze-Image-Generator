@@ -26,6 +26,7 @@
 #include <vector>
 #include <time.h>
 #include <cstdlib>
+#include <cstring>
 
 enum class IMG_FORMAT {JPG, PNG}; // Supported formats for output image
 
