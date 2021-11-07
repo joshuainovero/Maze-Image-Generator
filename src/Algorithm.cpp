@@ -3,10 +3,10 @@
  * MazeImage++ - A library that generates maze images
  * Copyright (C) - 2021 Joshua Inovero (joshinovero@gmail.com)
  * 
- * File: MazeImage++.h
- * This file is the main include header of the library
+ * File: Algorithm.cpp
+ * Implementation file for Algorithm.cpp
  * 
- *  ou may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
  * furnished to do so, under the terms of the LICENSE file.
  * 
@@ -17,9 +17,21 @@
  * 
  *****************************************************************************/
 
-#ifndef MAZEIMAGEPLUSPLUS_H
-#define MAZEIMAGEPLUSPLUS_H
+#include <MazeImage++/utils/Algorithm.h>
 
-#include "MazeImage++/MazeImgGenerator.h"
+namespace mazeimg_library{
 
-#endif // MAZEIMAGEPLUSPLUS_H
+    Algorithm::Algorithm(std::vector<Node*> *tiles_, uint32_t totalRows_) : 
+        tiles(tiles_), totalRows(totalRows_){}
+
+    Algorithm::~Algorithm() {}
+
+    void Algorithm::updateTileNeighbors(){
+        for (size_t i = 0; i < totalRows; ++i){
+            for (auto node : tiles[i]){
+                node->updateNeighbors(tiles);
+            }
+        }
+    }
+
+}

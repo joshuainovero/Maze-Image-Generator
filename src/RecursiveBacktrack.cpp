@@ -3,8 +3,8 @@
  * MazeImage++ - A library that generates maze images
  * Copyright (C) - 2021 Joshua Inovero (joshinovero@gmail.com)
  * 
- * File: Board.cpp
- * Implementation file for Board.h
+ * File: RecursiveBacktracker.cpp
+ * Implementation file for RecursiveBacktracker.h
  * 
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
@@ -17,38 +17,18 @@
  * 
  *****************************************************************************/
 
-#include "Board.h"
+#include <MazeImage++/utils/RecursiveBacktrack.h>
 
 namespace mazeimg_library{
 
-    Board::Board(M_SIZE m_size){
-        constructBoard(m_size);
+    RecursiveBacktrack::RecursiveBacktrack(std::vector<Node*> *tiles_, uint32_t totalRows_) 
+        : Algorithm(tiles_, totalRows_){
     }
 
-    void Board::constructBoard(M_SIZE m_size){
-        this->m_size = m_size;
-        totalRows = Board::img_SIZE/m_size;
+    RecursiveBacktrack::~RecursiveBacktrack() {}
 
-        // Allocate new board with respect to totalRows
-        tiles = new std::vector<Node*>[totalRows];
-        for (size_t i = 0; i < totalRows; ++i){
-            for (size_t k = 0; k < totalRows; ++k){
-                tiles[i].push_back(new Node(i, k, totalRows));
-            }
-        }
-    }
-
-    void Board::deallocateBoard(){
-        for (size_t i = 0; i < totalRows; ++i){
-            for (Node *node : tiles[i]) 
-                delete node;
-            tiles[i].clear();
-        }
-        delete [] tiles;
-    }
-
-    void Board::mazeRecursion(Node* current, std::vector<Node*> *board){
-        current->setVisited();
+    void RecursiveBacktrack::mazeRecursion(Node* current, std::vector<Node*> *board){
+       current->setVisited();
         
         // Shuffle the vector of neighbors of the current node
         std::vector<Node*> randomized_neighbors = current->g_neighbors();
@@ -86,47 +66,34 @@ namespace mazeimg_library{
             }
 
         }
+  
+    }
 
+    std::vector<Node*>* RecursiveBacktrack::run(){
         
-    }   
-
-    std::vector<Node*> *Board::rBacktracker(){
-
         // Reset all nodes to whites
         for (size_t i = 0; i < totalRows; ++i){
             for (Node* node : tiles[i])
                 node->reset();
         }
 
-        _COLOREDTEXT("Generating maze...\n", _YELLOW);
-        const char *sizeChar;
-        switch (m_size){
-            case M_SIZE::l: sizeChar = "Large"; break;
-            case M_SIZE::m: sizeChar = "Medium"; break;
-            case M_SIZE::s: sizeChar = "Small"; break;
-            default: break;
-        }
-        printf("Maze size: %s\nTotal rows: %u\n", sizeChar, m_size);
-
         // Iterate to all nodes and establish its neighbors
-        for (size_t i = 0; i < totalRows; ++i){
-            for (auto node : tiles[i]){
-                node->updateNeighbors(tiles);
-            }
-        }
-
+        updateTileNeighbors();
+        
         // The node that the algorithm will first visit
         Node* current = tiles[0][0];
 
         // Call DFS helper function
         mazeRecursion(current, tiles);
 
-        printf("Maze successfully generated.\n\n");
+        for (size_t i = 0; i < totalRows; ++i){
+            for (Node *node : tiles[i]){
+                if (!node->isVisited()){
+                    node->setWall();
+                }
+            }
+        }
         return tiles;
     }
-
-    uint32_t Board::g_totalRows() const { return totalRows; }
-
-    M_SIZE Board::g_m_size() const { return m_size; }
 
 }

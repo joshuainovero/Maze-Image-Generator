@@ -17,7 +17,7 @@
  * 
  *****************************************************************************/
 
-#include "Node.h"
+#include <MazeImage++/utils/Node.h>
 
 namespace mazeimg_library{
 
@@ -25,22 +25,22 @@ namespace mazeimg_library{
         this->row = row;
         this->col = col;
         this->totalRows = totalRows;
-        wall = false;
         visitedNode = false;
+        nodeType = NODETYPES::WHITE;
     }
 
     void Node::updateNeighbors(std::vector<Node*> *board){
         neighbors.clear();
-        if (row < totalRows - 1 && !(board[row + 1][col]->wall))
+        if (row < totalRows - 1 && (board[row + 1][col]->nodeType != NODETYPES::WALL))
             neighbors.push_back(board[row + 1][col]);
 
-        if (row > 0 && !(board[row - 1][col]->wall))
+        if (row > 0 && (board[row - 1][col]->nodeType != NODETYPES::WALL))
             neighbors.push_back(board[row - 1][col]);
 
-        if (col < totalRows - 1 && !(board[row][col + 1]->wall))
+        if (col < totalRows - 1 && (board[row][col + 1]->nodeType != NODETYPES::WALL))
             neighbors.push_back(board[row][col + 1]);
 
-        if (col > 0 && !(board[row][col - 1]->wall))
+        if (col > 0 && (board[row][col - 1]->nodeType != NODETYPES::WALL))
             neighbors.push_back(board[row][col - 1]);
     }
 
@@ -48,9 +48,15 @@ namespace mazeimg_library{
 
     std::vector<Node*> Node::g_neighbors() const { return neighbors; }
 
-    void Node::setVisited() {visitedNode = true;}
+    NODETYPES Node::g_nodeType() const { return nodeType; }
 
-    void Node::reset() { visitedNode = false; }
+    void Node::setVisited() {visitedNode = true; }
+
+    void Node::setRoute() { nodeType = NODETYPES::ROUTE; }
+
+    void Node::setWall() { nodeType = NODETYPES::WALL; }
+
+    void Node::reset() { visitedNode = false; nodeType = NODETYPES::WHITE;}
 
     bool Node::isVisited() const { return visitedNode; }
 
