@@ -34,7 +34,7 @@ namespace mazeimg_library{
     class ImageProcessor{
     public:
 
-        // Constructor
+        // Constructor using the specified size of a single node
         ImageProcessor(M_SIZE m_size);
 
         // Deallocates board and allocates new board according to m_size

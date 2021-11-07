@@ -29,7 +29,7 @@ namespace mazeimg_library{
     class Dijkstra : public Algorithm{
     public:
 
-        // Constructor
+        // Constructor copies tiles and totalRows
         Dijkstra(std::vector<Node*> *tiles_, uint32_t totalRows_);
 
         // Destructor

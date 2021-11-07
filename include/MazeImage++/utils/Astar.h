@@ -32,7 +32,7 @@ namespace mazeimg_library{
     class Astar : public Algorithm{
     public:
 
-        // Constructor
+        // Constructor copies tiles and totalRows
         Astar(std::vector<Node*> *tiles_, uint32_t totalRows_);
 
         // Destructor

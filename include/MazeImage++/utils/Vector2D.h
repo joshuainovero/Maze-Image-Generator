@@ -34,11 +34,14 @@ namespace mazeimg_library{
     template<typename T>
     class Vector2D{
         
+        // int, uint32_t, float, and double are only accepted
         static_assert(_isInt_<T>::_v || _isFloat_<T>::_v || _isUint_<T>::_v || _isDouble_<T>::_v, 
             "T must be int/uint32_t/float/double");
 
         public:
-            T x, y;
+            T x, y; // x and y values of the 2D vector
+
+            // Constructor that accepts numerical numbers
             Vector2D(T _x, T _y) : x(_x), y(_y){};
     };
 }

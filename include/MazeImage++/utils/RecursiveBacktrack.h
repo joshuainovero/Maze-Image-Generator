@@ -26,7 +26,7 @@ namespace mazeimg_library{
     class RecursiveBacktrack : public Algorithm{
     public:
 
-        // Constructor
+        // Constructor copies tiles and totalRows
         RecursiveBacktrack(std::vector<Node*> *tiles_, uint32_t totalRows_);
 
         // Destructor

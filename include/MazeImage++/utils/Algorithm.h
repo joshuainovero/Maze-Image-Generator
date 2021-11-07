@@ -28,7 +28,7 @@ namespace mazeimg_library{
     class Algorithm{
     public:
 
-        // Constructor
+        // Constructor copies tiles and totalRows
         Algorithm(std::vector<Node*> *tiles_, uint32_t totalRows_);
 
         // Destructor
