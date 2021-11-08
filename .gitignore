@@ -1,6 +1,4 @@
-tests/
-img/
+build/
 
-src/main.cpp
 *.bat
 *.exe
