@@ -29,6 +29,7 @@ namespace mazeimg_library{
     std::vector<Node*>* Dijkstra::run(){
         updateTileNeighbors();
 
+        // Set default values of g score to max int
         for (size_t i = 0; i < totalRows; ++i){
             for (size_t k = 0; k < totalRows; ++k){
                 gScore[tiles[i][k]] = INT_MAX;
@@ -59,7 +60,7 @@ namespace mazeimg_library{
 
         reconstructPath(endNode);
         resetAttributes();
-        
+
         return tiles;
     }
 

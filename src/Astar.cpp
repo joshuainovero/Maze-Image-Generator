@@ -36,6 +36,7 @@ namespace mazeimg_library{
         uint32_t precedence = 0;
         priorityQueue.insert(std::make_pair(std::make_pair(0, precedence), startNode));
 
+        // Set default values of g score to max int
         for (size_t i = 0; i < totalRows; ++i){
             for (size_t k = 0; k < totalRows; ++k){
                 gScore[tiles[i][k]] = INT_MAX;
@@ -44,6 +45,7 @@ namespace mazeimg_library{
         
         gScore[startNode] = 0;
 
+        // Set default values of f score to max int
         for (size_t i = 0; i < totalRows; ++i){
             for (size_t k = 0; k < totalRows; ++k){
                 fScore[tiles[i][k]] = INT_MAX;
