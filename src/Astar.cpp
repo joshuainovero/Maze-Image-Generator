@@ -22,7 +22,7 @@
 namespace mazeimg_library{
     
     Astar::Astar(std::vector<Node*> *tiles_, uint32_t totalRows_)
-        : Algorithm(tiles_, totalRows_) {}
+        : WeightedSearch(tiles_, totalRows_) {}
 
     Astar::~Astar() {}
 
@@ -32,19 +32,16 @@ namespace mazeimg_library{
 
     std::vector<Node*>* Astar::run(){
         updateTileNeighbors();
-        Node* startNode = tiles[0][0];
-        Node* endNode = tiles[totalRows - 1][totalRows - 1];
+
         uint32_t precedence = 0;
-        std::set<std::pair<std::pair<double, uint32_t>, Node*>> priorityQueue;
         priorityQueue.insert(std::make_pair(std::make_pair(0, precedence), startNode));
-        std::unordered_map<Node*, Node*> previousNode;
-        std::unordered_map<Node*, uint32_t> gScore;
-        std::unordered_map<Node*, double> fScore;
+
         for (size_t i = 0; i < totalRows; ++i){
             for (size_t k = 0; k < totalRows; ++k){
                 gScore[tiles[i][k]] = INT_MAX;
             }
         }
+        
         gScore[startNode] = 0;
 
         for (size_t i = 0; i < totalRows; ++i){
@@ -69,7 +66,7 @@ namespace mazeimg_library{
                 priorityQueueTracker.erase(it1);
 
             if (current == endNode){
-                reconstructPath(previousNode, current, startNode);
+                reconstructPath(current);
                 break;
             }
 
@@ -92,18 +89,17 @@ namespace mazeimg_library{
                 }
             }
         }
+        
+        resetAttributes();
         return tiles;
 
     }
 
-    void Astar::reconstructPath(std::unordered_map<Node*, Node*> previousNode,
-            Node* current, Node* startNode){
-
-        while (current != startNode){
-            current->setRoute();
-            current = previousNode[current];
-        }
-        current->setRoute();
+    void Astar::resetAttributes(){
+        previousNode.clear();
+        priorityQueue.clear();
+        gScore.clear();
+        fScore.clear();
     }
 
 }

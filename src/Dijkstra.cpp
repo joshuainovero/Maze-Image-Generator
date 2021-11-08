@@ -22,18 +22,12 @@
 namespace mazeimg_library{
 
     Dijkstra::Dijkstra(std::vector<Node*> *tiles_, uint32_t totalRows_)
-        : Algorithm(tiles_, totalRows_) {}
+        : WeightedSearch(tiles_, totalRows_) {}
 
     Dijkstra::~Dijkstra() {}
 
     std::vector<Node*>* Dijkstra::run(){
         updateTileNeighbors();
-
-        Node* startNode = tiles[0][0];
-        Node* endNode = tiles[totalRows - 1][totalRows - 1];
-        std::set<std::pair<uint32_t, Node*>> priorityQueue;
-        std::unordered_map<Node*, uint32_t> gScore;
-        std::unordered_map<Node*, Node*> previousNode;
 
         for (size_t i = 0; i < totalRows; ++i){
             for (size_t k = 0; k < totalRows; ++k){
@@ -63,18 +57,15 @@ namespace mazeimg_library{
             }
         }
 
-        reconstructPath(previousNode, endNode, startNode);
-
+        reconstructPath(endNode);
+        resetAttributes();
+        
         return tiles;
     }
 
-    void Dijkstra::reconstructPath(std::unordered_map<Node*, Node*> previousNode,
-            Node* current, Node* startNode){
-
-        while (current != startNode){
-            current->setRoute();
-            current = previousNode[current];
-        }
-        current->setRoute();
+    void Dijkstra::resetAttributes(){
+        previousNode.clear();
+        priorityQueue.clear();
+        gScore.clear();
     }
 }
