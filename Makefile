@@ -1,7 +1,7 @@
 # Build static library
 
 target = $(LIB)
-objs := Board.o MazeImgGenerator.o ImageProcessor.o Algorithm.o RecursiveBacktrack.o Dijkstra.o Astar.o Node.o
+objs := Board.o MazeImgGenerator.o ImageProcessor.o Algorithm.o WeightedSearch.o RecursiveBacktrack.o Dijkstra.o Astar.o Node.o
 
 CC := g++
 CIMGH := -Iinclude
@@ -27,6 +27,9 @@ ImageProcessor.o: $(SRCPATH)/ImageProcessor.cpp
 	$(CC) $(CFLAGS) $(CIMGH) -c $<
 
 Algorithm.o: $(SRCPATH)/Algorithm.cpp
+	$(CC) $(CFLAGS) $(CIMGH) -c $<
+
+WeightedSearch.o: $(SRCPATH)/WeightedSearch.cpp
 	$(CC) $(CFLAGS) $(CIMGH) -c $<
 
 RecursiveBacktrack.o: $(SRCPATH)/RecursiveBacktrack.cpp
