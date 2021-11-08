@@ -1,5 +1,5 @@
 # Build static library
-# Outputs to (this directory) -> (lib directory)
+# Outputs to (this directory) -> (build directory)
 
 
 cmake_minimum_required(VERSION 3.21.0)
