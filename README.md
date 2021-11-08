@@ -5,6 +5,10 @@ MazeImage++ is a library for C++ that allows you to generate maze images.
 - <a href="https://imagemagick.org/script/download.php">ImageMagick</a>
 - <a href="http://cimg.eu/">CImg library</a>
 
+## Supported Image Formats ##
+- JPG
+- PNG
+
 ## Setup ##
 - Run CMake
 - Go to build directory and run makefile to build static library.
