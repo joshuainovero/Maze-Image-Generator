@@ -1,3 +1,22 @@
+/*****************************************************************************
+ * 
+ * MazeImage++ - A library that generates maze images
+ * Copyright (C) - 2021 Joshua Inovero (joshinovero@gmail.com)
+ * 
+ * File: Vector2D.h
+ * Class to create vector 2D
+ * 
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the LICENSE file.
+ * 
+ * The origin of this software must not be misrepresented;
+ * you must not claim that you wrote the original software.
+ * If you use this software in a product, an acknowledgment
+ * in the product documentation would be appreciated but is not required.
+ * 
+ *****************************************************************************/
+
 #ifndef MAZEIMG_IMAGE_VECTOR2D_H
 #define MAZEIMG_IMAGE_VECTOR2D_H
 #include <type_traits>

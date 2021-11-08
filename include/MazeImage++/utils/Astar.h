@@ -4,7 +4,7 @@
  * Copyright (C) - 2021 Joshua Inovero (joshinovero@gmail.com)
  * 
  * File: Astar.h
- * Derived class of Algorithm.h
+ * Derived class of WeightedSearch.h
  * 
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
