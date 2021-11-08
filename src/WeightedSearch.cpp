@@ -23,7 +23,11 @@ namespace mazeimg_library{
 
     WeightedSearch::WeightedSearch(std::vector<Node*> *tiles_, uint32_t totalRows_) 
         : Algorithm(tiles_, totalRows_){
+        
+        // Start node will be at the top left of the image
         startNode = tiles[0][0];
+
+        // End node will be at the bottom right of the image
         endNode = tiles[totalRows - 1][totalRows - 1];
     }
 
