@@ -19,14 +19,14 @@
 
 #ifndef MAZEIMG_IMAGE_DIJKSTRA_H
 #define MAZEIMG_IMAGE_DIJKSTRA_H
-#include <MazeImage++/utils/Algorithm.h>
+#include <MazeImage++/utils/WeightedSearch.h>
 #include <unordered_map>
 #include <utility>
 #include <set>
 
 namespace mazeimg_library{
 
-    class Dijkstra : public Algorithm{
+    class Dijkstra : public WeightedSearch{
     public:
 
         // Constructor copies tiles and totalRows
@@ -40,9 +40,12 @@ namespace mazeimg_library{
 
     private:
 
-        // Reconstructs the route taken after calling the search algorithm
-        void reconstructPath(std::unordered_map<Node*, Node*> previousNode,
-            Node* current, Node* startNode);
+        std::set<std::pair<uint32_t, Node*>> priorityQueue; // Priority queue of g scores
+        std::unordered_map<Node*, uint32_t>  gScore;        // Stored distances from the starting node to current node
+
+        // Resets STL attributes
+        virtual void resetAttributes() override;
+
     };
 
 }

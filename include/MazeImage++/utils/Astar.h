@@ -19,7 +19,7 @@
 
 #ifndef MAZEIMG_IMAGE_ASTAR_H
 #define MAZEIMG_IMAGE_ASTAR_H
-#include <MazeImage++/utils/Algorithm.h>
+#include <MazeImage++/utils/WeightedSearch.h>
 #include <MazeImage++/utils/Vector2D.h>
 #include <unordered_map>
 #include <utility>
@@ -29,7 +29,7 @@ namespace mazeimg_library{
 
     typedef mazeimg_library::Vector2D<double> vec2Double;
 
-    class Astar : public Algorithm{
+    class Astar : public WeightedSearch{
     public:
 
         // Constructor copies tiles and totalRows
@@ -43,12 +43,16 @@ namespace mazeimg_library{
 
     private:
 
+        std::set<std::pair<std::pair<double, uint32_t>, Node*>> priorityQueue; // Priority queue of f scores
+
+        std::unordered_map<Node*, uint32_t> gScore; // Stored distances from the starting node to current node
+        std::unordered_map<Node*, double>   fScore; // Sum of a current g score and heuristic cost
+
         // A heuristic function that uses manhattan distance
         double calcHeuristic(vec2Double p1, vec2Double p2);
 
-        // Reconstructs the route taken after calling the search algorithm
-        void reconstructPath(std::unordered_map<Node*, Node*> previousNode,
-            Node* current, Node* startNode);
+        // Resets STL attributes
+        virtual void resetAttributes() override;
     };
 
 }
