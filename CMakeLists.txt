@@ -1,7 +1,6 @@
 # Build static library
 # Outputs to (this directory) -> (build directory)
 
-
 cmake_minimum_required(VERSION 3.21.0)
 
 project(mazeimage)
@@ -19,8 +18,5 @@ file(GLOB INCLUDE_FILES ${INCLUDE_DIR}/*.h)
 file (GLOB SRC_FILES ${SRC_DIR}/*.cpp)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
-set(CMAKE_BUILD_FILES_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
 
 add_library(img_maze STATIC ${INCLUDE_FILES} ${SRC_FILES})
