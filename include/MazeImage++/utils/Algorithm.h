@@ -22,6 +22,7 @@
 #include <MazeImage++/utils/Node.h>
 #include <algorithm>
 #include <cmath>
+#include <climits>
 
 namespace mazeimg_library{
 
