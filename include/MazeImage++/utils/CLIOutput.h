@@ -36,10 +36,10 @@
 #elif __APPLE__ || __linux__
     #define _RED     31
     #define _GREEN   32
-    #define _YELLOW  43
+    #define _YELLOW  33
     #define _DEFAULT \033[0m
     #define _COLOREDTEXT(_msg, _color) do { \
-        printf("\033[0;%dm%s\033[0m", _color, _msg); \
+        printf("\033[1;%dm%s\033[0m", _color, _msg); \
     } while(false)
 
 #else
